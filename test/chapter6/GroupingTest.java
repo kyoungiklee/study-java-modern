@@ -1,11 +1,14 @@
 package chapter6;
 
 import chapter04.Dish;
+import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 class GroupingTest {
 
@@ -19,5 +22,6 @@ class GroupingTest {
     @Test
     void groupDishesByTypeTest() {
         Map<Dish.Type, List<Dish>> typeListMap = Grouping.groupDishesByType();
+        assertThat(typeListMap.get(Dish.Type.OTHER).size()).isEqualTo(otherMenu.size());
     }
 }
