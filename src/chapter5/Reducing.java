@@ -23,7 +23,7 @@ public class Reducing {
         List<Integer> numbers = Arrays.asList(3, 4, 5, 1, 2);
 
         //주어진 숫자 리스트의 합계를 구하시오
-        System.out.println(numbers.stream().reduce(0, (a, b) -> a + b)
+        System.out.println(numbers.stream().reduce(0, Integer::sum)
                 .intValue());
 
         System.out.println();
@@ -45,7 +45,7 @@ public class Reducing {
         //메뉴 리스트의 칼로리 합계를 구하시오
 
         System.out.printf("Number of calories: %d",menu.stream()
-                .map(dish -> dish.getCalories())
+                .map(Dish::getCalories)
                 .reduce(0, Integer::sum));
 
     }
