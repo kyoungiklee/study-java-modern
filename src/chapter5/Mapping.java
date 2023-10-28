@@ -25,12 +25,7 @@ public class Mapping {
     public static void main(String[] args) {
 
         //메뉴명을 출력하시오
-        menu.stream().map(new Function<Dish, String>() {
-            @Override
-            public String apply(Dish dish) {
-                return dish.getName();
-            }
-        }).collect(Collectors.toList()).forEach(System.out::println);
+        menu.stream().map(Dish::getName).toList().forEach(System.out::println);
 
 
         //스트링 리스트의 스트링 길이의 합을 출력하시오
@@ -54,7 +49,7 @@ public class Mapping {
         numbers1.stream()
                 .flatMap(i -> numbers2.stream().map(j -> new int[] {i, j}))
                 .filter(i -> (i[0] + i[1]) % 3 == 0)
-                .collect(Collectors.toList())
+                .toList()
                 .forEach(i -> System.out.printf("(%d, %d) ", i[0], i[1]));
     }
 }

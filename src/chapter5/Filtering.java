@@ -32,7 +32,7 @@ public class Filtering {
         //메뉴 리스트에서 채식주의자 메뉴를 출력하시오
         menu.stream()
                 .filter(Dish::isVegetarian)
-                .collect(Collectors.toList())
+                .toList()
                 .forEach(System.out::println);
         System.out.println();
 
@@ -41,7 +41,7 @@ public class Filtering {
         numbers.stream()
                 .filter(i -> i % 2 == 0)
                 .distinct()
-                .collect(Collectors.toList())
+                .toList()
                 .forEach(System.out::println);
         System.out.println();
 
@@ -49,7 +49,7 @@ public class Filtering {
         System.out.println("Filtered sorted menu:");
         specialMenu.stream()
                 .filter(specialMenu -> specialMenu.getCalories() < 320)
-                .collect(Collectors.toList())
+                .toList()
                 .forEach(System.out::println);
         System.out.println();
 
@@ -58,7 +58,7 @@ public class Filtering {
         menu.stream()
                 .filter(dish -> dish.getCalories() > 300)
                 .limit(3)
-                .collect(Collectors.toList())
+                .toList()
                 .forEach(System.out::println);
         System.out.println();
 
@@ -66,7 +66,7 @@ public class Filtering {
         menu.stream()
                 .filter(dish -> dish.getCalories() > 300)
                 .skip(2)
-                .collect(Collectors.toList())
+                .toList()
                 .forEach(System.out::println);
     }
 
