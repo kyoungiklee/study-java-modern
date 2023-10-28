@@ -1,7 +1,6 @@
 package chapter6;
 
 import chapter04.Dish;
-import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
