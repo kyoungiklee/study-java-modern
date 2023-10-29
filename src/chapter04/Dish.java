@@ -34,6 +34,10 @@ public class Dish {
         return name;
     }
 
+    public int compareByDishName(Dish dish) {
+        return 0;
+    }
+
     public enum Type {
         MEAT,
         FISH,
@@ -41,5 +45,4 @@ public class Dish {
     }
 
     public enum CaloricLevel { DIET, NORMAL, FAT }
-
 }

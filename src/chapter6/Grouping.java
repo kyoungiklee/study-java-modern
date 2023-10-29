@@ -3,8 +3,11 @@ package chapter6;
 import chapter04.Dish;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
+import static java.util.Comparator.comparing;
+import static java.util.Comparator.comparingInt;
 import static java.util.stream.Collectors.*;
 
 public class Grouping {
@@ -44,48 +47,104 @@ public class Grouping {
         System.out.println("Most caloric dishes by type first way: " + mostCaloricDishesByTypeFirst());
         System.out.println("Most caloric dishes by type second way: " + mostCaloricDishesByTypeSecond());
         System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOptionals());
+        System.out.println("Sum calories by type: " + sumCaloriesByType());
+        System.out.println("Caloric levels by type: " + caloricLevelsByType());
+        System.out.println("Sorted dishes name grouped by type: " + groupByTypeFirstSorted());
+        System.out.println("Sorted dishes name grouped by type: " + groupByTypeFirstGrouping());
+
+    }
+
+    private static Map<Dish.Type, List<Dish>> groupByTypeFirstGrouping() {
+        Map<Dish.Type, List<Dish>> collect = menu.stream()
+                .collect(groupingBy(Dish::getType));
+
+        collect.values()
+                .forEach(list -> list.sort(comparing(Dish::getName)));
+
+        return collect;
+
+    }
+
+    private static Map<Dish.Type, List<Dish>> groupByTypeFirstSorted() {
+        return menu
+                .stream()
+                .sorted(comparing(Dish::getName))
+                .collect(Collectors.groupingBy(Dish::getType));
+    }
+
+    private static Map<Dish.Type, List<Dish.CaloricLevel>> caloricLevelsByType() {
+        return menu.stream()
+                .collect(groupingBy(Dish::getType,
+                        mapping((Dish dish) -> {
+                            if (dish.getCalories() < 300) return Dish.CaloricLevel.DIET;
+                            else if (dish.getCalories() < 500) return Dish.CaloricLevel.NORMAL;
+                            return Dish.CaloricLevel.FAT;
+                        }, toList())
+                ));
+    }
+
+    private static Map<Dish.Type, Integer> sumCaloriesByType() {
+         return menu.stream()
+                .collect(groupingBy(
+                        Dish::getType,
+                        summingInt(Dish::getCalories)
+                ));
     }
 
     private static  Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionals() {
        return menu.stream()
-                .collect(groupingBy(Dish::getType, collectingAndThen(
-                                reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2),
-                        Optional::get
+                .collect(groupingBy(
+                        Dish::getType,
+                        collectingAndThen(
+                            reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2),
+                            Optional::get
                         )
-
                 ));
     }
 
     private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeSecond() {
        return menu.stream()
-                .collect(groupingBy(Dish::getType,
-                        reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)));
+                .collect(groupingBy(
+                        Dish::getType,
+                        reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)
+                ));
     }
 
     private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeFirst() {
         return menu.stream()
-                .collect(groupingBy(Dish::getType, maxBy(Comparator.comparingInt(Dish::getCalories))));
+                .collect(groupingBy(
+                        Dish::getType,
+                        maxBy(comparingInt(Dish::getCalories))
+                ));
     }
 
     private static Map<Dish.Type, Long> countDishesInGroups() {
-        return menu.stream().collect(groupingBy(Dish::getType, counting()));
+        return menu.stream()
+                .collect(groupingBy(
+                    Dish::getType,
+                    counting()
+                ));
     }
 
 
     private static Map<Dish.Type, Map<Dish.CaloricLevel, List<Dish>>> groupDishedByTypeAndCaloricLevel() {
 
         return menu.stream()
-                .collect(groupingBy(Dish::getType, groupingBy(dish -> {
+                .collect(groupingBy(
+                        Dish::getType,
+                        groupingBy(dish -> {
                     if (dish.getCalories() <= 300) return Dish.CaloricLevel.DIET;
                     else if (dish.getCalories() <= 500 ) return Dish.CaloricLevel.NORMAL;
                     else return Dish.CaloricLevel.FAT;
-                }, toList())));
+                }, toList())
+                ));
     }
 
     private static Map<Dish.CaloricLevel, List<Dish>> groupDishesByCaloricLevel() {
 
         return menu.stream()
-                .collect(groupingBy(dish -> {
+                .collect(groupingBy(
+                        dish -> {
                             if (dish.getCalories() <= 300) return Dish.CaloricLevel.DIET;
                             else if (dish.getCalories() <= 500) return Dish.CaloricLevel.NORMAL;
                             else return Dish.CaloricLevel.FAT;
@@ -96,7 +155,10 @@ public class Grouping {
     private static Map<Dish.Type, List<Dish>> groupCaloricDishesByType() {
 
         return menu.stream()
-                .collect(groupingBy(Dish::getType, filtering(dish -> dish.getCalories() > 500, toList())));
+                .collect(groupingBy(
+                        Dish::getType,
+                        filtering(dish -> dish.getCalories() > 500, toList())
+                ));
     }
 
     private static Map<Dish.Type, Set<String>> groupDishTagsByType() {
@@ -116,6 +178,6 @@ public class Grouping {
     }
 
     public static Map<Dish.Type, List<Dish>> groupDishesByType() {
-        return menu.stream().collect(groupingBy(Dish::getType));
+        return menu.stream().collect(groupingByConcurrent(Dish::getType));
     }
 }
