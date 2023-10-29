@@ -3,6 +3,7 @@ package chapter6;
 import chapter04.Dish;
 
 import java.util.*;
+import java.util.function.Function;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.*;
@@ -42,6 +43,24 @@ public class Grouping {
         System.out.println("Dishes grouped by type and caloric level: " + groupDishedByTypeAndCaloricLevel());
         System.out.println("Count dishes in groups: " + countDishesInGroups());
         System.out.println("Most caloric dishes by type first way: " + mostCaloricDishesByTypeFirst());
+        System.out.println("Most caloric dishes by type second way: " + mostCaloricDishesByTypeSecond());
+        System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOptionals());
+    }
+
+    private static  Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionals() {
+       return menu.stream()
+                .collect(groupingBy(Dish::getType, collectingAndThen(
+                                reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2),
+                        Optional::get
+                        )
+
+                ));
+    }
+
+    private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeSecond() {
+       return menu.stream()
+                .collect(groupingBy(Dish::getType,
+                        reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2)));
     }
 
     private static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeFirst() {
