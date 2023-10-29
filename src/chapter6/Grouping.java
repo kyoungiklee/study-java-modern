@@ -3,7 +3,6 @@ package chapter6;
 import chapter04.Dish;
 
 import java.util.*;
-import java.util.function.Function;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.*;
