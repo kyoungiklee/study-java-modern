@@ -1,23 +1,16 @@
 package com.opennuri.studymodernjava.chapter5;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.Objects;
 
 @Getter @Setter
+@AllArgsConstructor
 public class Trader {
     private String name;
     private String city;
-
-    public Trader(String name, String city) {
-        this.name = name;
-        this.city = city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
 
     @Override
     public int hashCode() {
