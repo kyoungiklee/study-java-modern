@@ -44,7 +44,6 @@ public class Reducing {
     }
 
     public static int calculateTotalCaloriesWithoutCollectors() {
-
         return menu.stream()
                 .map(Dish::getCalories)
                 .reduce(0, (Integer::sum));
@@ -52,11 +51,8 @@ public class Reducing {
 
     public static int calculateTotalCalories() {
 
-
-        Integer calculateTotalCalories = menu.stream()
+        return menu.stream()
                 .collect(reducing(0, (Dish dish) -> dish.getCalories(), (Integer i, Integer j) -> i + j));
-
-        return calculateTotalCalories;
 
     }
 }

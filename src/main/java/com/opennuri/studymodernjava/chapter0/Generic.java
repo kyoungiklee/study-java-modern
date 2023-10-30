@@ -106,7 +106,7 @@ public class Generic {
        SaltClass<Student> c1 = new SaltClass<>();
         //매개변수화된 클래스 'LinkedList'의 원시 사용
        List list = new LinkedList();
-       list.add(new Integer(1));
+       list.add(Integer.valueOf(1));
        Integer i = (Integer)list.iterator().next();
        System.out.println(i);
 

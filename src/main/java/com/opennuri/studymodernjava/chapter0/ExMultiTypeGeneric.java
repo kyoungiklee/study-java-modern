@@ -1,7 +1,5 @@
 package com.opennuri.studymodernjava.chapter0;
 
-import java.util.Map;
-
 public class ExMultiTypeGeneric<K,V>{
     private K key;
     private V value;
