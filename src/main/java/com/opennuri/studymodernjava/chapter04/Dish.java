@@ -1,4 +1,4 @@
-package chapter04;
+package com.opennuri.studymodernjava.chapter04;
 
 public class Dish {
     private final String name;

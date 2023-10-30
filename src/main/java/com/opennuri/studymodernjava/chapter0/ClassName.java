@@ -1,4 +1,4 @@
-package chapter0;
+package com.opennuri.studymodernjava.chapter0;
 
 
  // 제네릭은 유형을 외부에서 지정해준다고 했다. 즉 해당 클래스 객체가 인스턴스화 했을 때,

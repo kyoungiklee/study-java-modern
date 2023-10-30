@@ -1,4 +1,4 @@
-package chapter5;
+package com.opennuri.studymodernjava.chapter5;
 
 import java.util.Arrays;
 import java.util.stream.Collectors;

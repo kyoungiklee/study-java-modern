@@ -5,7 +5,7 @@ File > Invalidate Cachees... 로 캐시를 삭제하면 정상적으로 보임
 
 ## chapter6
 
-#### 리스트를 그룹핑하는 방법
+## Grouping
 
 #### Collections.groupingBy() 메소드를 사용하여 그룹핑할 수 있다.
 ```
@@ -358,3 +358,5 @@ public class Grouping {
     }
 }
 ```
+
+## reducing

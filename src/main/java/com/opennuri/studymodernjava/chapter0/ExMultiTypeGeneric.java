@@ -1,4 +1,4 @@
-package chapter0;
+package com.opennuri.studymodernjava.chapter0;
 
 import java.util.Map;
 

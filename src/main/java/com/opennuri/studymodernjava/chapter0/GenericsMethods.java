@@ -1,4 +1,4 @@
-package chapter0;
+package com.opennuri.studymodernjava.chapter0;
 
 public class GenericsMethods {
     public static <T> boolean isEquals(GenericsType<T> g1, GenericsType<T> g2) {

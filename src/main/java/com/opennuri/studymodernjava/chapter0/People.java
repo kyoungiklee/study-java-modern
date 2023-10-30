@@ -1,4 +1,4 @@
-package chapter0;
+package com.opennuri.studymodernjava.chapter0;
 
 public class People <T, M>{
     private T name;

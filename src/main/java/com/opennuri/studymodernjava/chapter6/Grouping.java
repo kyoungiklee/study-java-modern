@@ -1,4 +1,4 @@
-package chapter6;
+package com.opennuri.studymodernjava.chapter6;
 
 import chapter04.Dish;
 
