@@ -1,5 +1,6 @@
 package com.opennuri.studymodernjava.chapter6;
 
+import com.opennuri.studymodernjava.chapter04.Dish;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
