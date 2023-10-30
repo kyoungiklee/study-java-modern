@@ -3,10 +3,9 @@ package chapter6;
 import chapter04.Dish;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
-import static java.util.stream.Collectors.*;
+import static java.util.stream.Collectors.reducing;
 
 public class Reducing {
 

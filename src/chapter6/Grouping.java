@@ -157,7 +157,7 @@ public class Grouping {
         return menu.stream()
                 .collect(groupingBy(
                         Dish::getType,
-                        filtering(dish -> dish.getCalories() > 500, toList())
+                        Collectors.filtering(dish -> dish.getCalories() > 500, toList())
                 ));
     }
 
