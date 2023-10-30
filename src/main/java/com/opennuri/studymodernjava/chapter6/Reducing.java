@@ -1,6 +1,8 @@
 package com.opennuri.studymodernjava.chapter6;
 
-import chapter04.Dish;
+
+
+import com.opennuri.studymodernjava.chapter04.Dish;
 
 import java.util.List;
 
