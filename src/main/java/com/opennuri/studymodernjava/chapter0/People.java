@@ -35,8 +35,6 @@ public class People <T, M>{
     public static void main(String[] args) {
         People<String, Integer> kyoungik = new People<>("kyoungik", 30);
         People<String, Integer> sunik = new People<>("kyoungik", 30);
-
         System.out.println(People.compare(kyoungik, sunik));
-
     }
 }
