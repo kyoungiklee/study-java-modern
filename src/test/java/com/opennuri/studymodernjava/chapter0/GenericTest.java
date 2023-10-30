@@ -1,4 +1,4 @@
-package chapter0;
+package com.opennuri.studymodernjava.chapter0;
 
 import org.assertj.core.api.Assert;
 import org.junit.jupiter.api.Test;
