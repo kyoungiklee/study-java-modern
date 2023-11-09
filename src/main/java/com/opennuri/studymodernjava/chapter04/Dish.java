@@ -1,11 +1,15 @@
 package com.opennuri.studymodernjava.chapter04;
 
+import lombok.Builder;
+
 public class Dish {
     private final String name;
     private final boolean isVegetarian;
     private final int calories;
     private final Type type;
 
+
+    @Builder
     public Dish(String name, boolean isVegetarian, int calories, Type type) {
         this.name = name;
         this.isVegetarian = isVegetarian;
