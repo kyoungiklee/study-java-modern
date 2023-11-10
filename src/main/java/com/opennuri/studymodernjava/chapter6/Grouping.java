@@ -46,9 +46,9 @@ public class Grouping {
         System.out.println("Dishes grouped by caloric level: " + groupDishesByCaloricLevel());
         System.out.println("Dishes grouped by type and caloric level: " + groupDishedByTypeAndCaloricLevel());
         System.out.println("Count dishes in groups: " + countDishesInGroups());
-        System.out.println("Most caloric dishes by type first way: " + mostCaloricDishesByTypeFirst());
-        System.out.println("Most caloric dishes by type second way: " + mostCaloricDishesByTypeSecond());
-        System.out.println("Most caloric dishes by type: " + mostCaloricDishesByTypeWithoutOptionals());
+        System.out.println("Most caloric dishes by type using reducing: " + mostCaloricDishesByTypeUsingReducing());
+        System.out.println("Most caloric dishes by type using maxby: " + mostCaloricDishesByTypeUsingMaxBy());
+        System.out.println("Most caloric dishes by type using collectAndThen: " + mostCaloricDishesByTypeUsingCollectingAndThen());
         System.out.println("Sum calories by type: " + sumCaloriesByType());
         System.out.println("Caloric levels by type: " + caloricLevelsByType());
         System.out.println("Sorted dishes name grouped by type: " + groupByTypeAndSortByNameAfterSorted());
@@ -93,18 +93,16 @@ public class Grouping {
                 ));
     }
 
-    public static  Map<Dish.Type, Dish> mostCaloricDishesByTypeWithoutOptionals() {
-       return menu.stream()
+    public static Map<Dish.Type, Integer> mostCaloricDishesByTypeUsingCollectingAndThen() {
+        return menu.stream()
                 .collect(groupingBy(
                         Dish::getType,
-                        collectingAndThen(
-                            reducing((Dish d1, Dish d2) -> d1.getCalories() > d2.getCalories() ? d1 : d2),
-                            Optional::get
-                        )
-                ));
+                        collectingAndThen(reducing((Dish dish1, Dish dish2)
+                                        -> dish1.getCalories() > dish2.getCalories() ? dish1 : dish2),
+                                dish -> dish.map(Dish::getCalories).orElse(0))));
     }
 
-    public static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeSecond() {
+    public static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeUsingReducing() {
        return menu.stream()
                 .collect(groupingBy(
                         Dish::getType,
@@ -112,7 +110,7 @@ public class Grouping {
                 ));
     }
 
-    public static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeFirst() {
+    public static Map<Dish.Type, Optional<Dish>> mostCaloricDishesByTypeUsingMaxBy() {
         return menu.stream()
                 .collect(groupingBy(
                         Dish::getType,
