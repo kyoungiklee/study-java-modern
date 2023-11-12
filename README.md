@@ -3,7 +3,7 @@
 ## gradle 프로젝트 오픈시 build.gradle.kts, settings.gradle.kts 빨간줄이 보이는 경우
 File > Invalidate Cachees... 로 캐시를 삭제하면 정상적으로 보임
 
-## chapter5
+## chapter4
 
 ## chapter6
 
