@@ -4,6 +4,7 @@
 File > Invalidate Cachees... 로 캐시를 삭제하면 정상적으로 보임
 
 ## chapter4
+안녕하세요 chapter 4 내용 정리입니다. 
 
 ## chapter6
 
