@@ -36,5 +36,5 @@ class ReducingTest {
 
         assertThat(reduce).isEqualTo(4300);
     }
-    
+
 }
