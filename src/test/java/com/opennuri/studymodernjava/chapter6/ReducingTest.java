@@ -69,6 +69,7 @@ class ReducingTest {
     void calculateTotalCaloriesWithMethodReferenceUsingReducing() {
         assertThat(Reducing.calculateTotalCaloriesWithMethodReferenceUsingReducing()).isEqualTo(4300);
 
+        @SuppressWarnings("training")
         Integer collect = menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum));
         log.debug("reducing()에서 메소드 레퍼런스를 사용하여 메뉴 칼로리 총합을 구한다: {}", collect);
     }
