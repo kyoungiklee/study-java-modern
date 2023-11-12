@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
+import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -57,6 +58,9 @@ class ReducingTest {
                 .mapToInt(Dish::getCalories)
                 .reduce(0, Integer::sum);
         log.debug("reduce를 이용하여 메뉴의 칼로리 총합 구하기(lamda): {}", reduce2);
+
+        Integer collect = menu.stream().collect(Collectors.reducing(0, Dish::getCalories, Integer::sum));
+        log.debug("collectors.reducing 이용하여 메뉴의 칼로리 총합 구하기: {}", collect);
     }
 
     @Test
