@@ -1,5 +1,6 @@
 package com.opennuri.studymodernjava.chapter7;
 
+import java.util.stream.LongStream;
 import java.util.stream.Stream;
 
 public class ParallelStreams {
@@ -21,6 +22,10 @@ public class ParallelStreams {
         return Stream.iterate(1L, i -> i + 1).limit(n)
                 .parallel()
                 .reduce(Long::sum).orElse(0L);
+    }
+
+    public static long rangedSum(long n) {
+        return LongStream.rangeClosed(1, n).reduce(Long::sum).orElse(0L);
     }
 
 }
