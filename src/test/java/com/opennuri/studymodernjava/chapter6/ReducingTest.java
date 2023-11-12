@@ -92,5 +92,8 @@ class ReducingTest {
     @DisplayName(value = "Sum 메소드를 이용하여 합계 구하기")
     void calculateTotalCaloriesUsingSum() {
         assertThat(Reducing.calculateTotalCaloriesUsingSum()).isEqualTo(4300);
+
+        int sum = menu.stream().mapToInt(Dish::getCalories).sum();
+        log.debug("Sum 메소드를 이용하여 합계 구하기: {}", sum);
     }
 }
