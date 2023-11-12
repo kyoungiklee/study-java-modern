@@ -69,7 +69,7 @@ class ReducingTest {
     void calculateTotalCaloriesWithMethodReferenceUsingReducing() {
         assertThat(Reducing.calculateTotalCaloriesWithMethodReferenceUsingReducing()).isEqualTo(4300);
 
-        @SuppressWarnings("training")
+        @SuppressWarnings(value = "training")
         Integer collect = menu.stream().collect(reducing(0, Dish::getCalories, Integer::sum));
         log.debug("reducing()에서 메소드 레퍼런스를 사용하여 메뉴 칼로리 총합을 구한다: {}", collect);
     }
@@ -78,6 +78,13 @@ class ReducingTest {
     @DisplayName(value = "reducing() 메소드 사용하지 않고 메뉴의 칼로리 총합을 구한다")
     void calculateTotalCaloriesWithMethodReferenceTest() {
         assertThat(Reducing.calculateTotalCaloriesWithoutCollectors()).isEqualTo(4300);
+
+        @SuppressWarnings(value = "taining")
+        Integer reduce = menu.stream().map(dish -> dish.getCalories())
+                .reduce(0, (integer, integer2) -> integer + integer2);
+        log.debug("reducing() 메소드 사용하지 않고 메뉴의 칼로리 총합 구하기: {}", reduce);
+
+        assertThat(reduce).isEqualTo(4300);
 
     }
 
