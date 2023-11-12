@@ -79,6 +79,13 @@ class ReducingTest {
     void calculateTotalCaloriesWithMethodReferenceTest() {
         assertThat(Reducing.calculateTotalCaloriesWithoutCollectors()).isEqualTo(4300);
 
+        @SuppressWarnings(value = "taining")
+        Integer reduce = menu.stream().map(dish -> dish.getCalories())
+                .reduce(0, (integer, integer2) -> integer + integer2);
+        log.debug("reducing() 메소드 사용하지 않고 메뉴의 칼로리 총합 구하기: {}", reduce);
+
+        assertThat(reduce).isEqualTo(4300);
+
     }
 
     @Test
