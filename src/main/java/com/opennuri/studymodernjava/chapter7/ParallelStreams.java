@@ -44,6 +44,7 @@ public class ParallelStreams {
         }
     }
 
+
     public static long rangedSum(long n) {
         return LongStream.rangeClosed(1, n).reduce(Long::sum).orElse(0L);
     }
