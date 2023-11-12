@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.reducing;
+import static java.util.stream.Collectors.summingInt;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -92,5 +93,8 @@ class ReducingTest {
     @DisplayName(value = "Sum 메소드를 이용하여 합계 구하기")
     void calculateTotalCaloriesUsingSum() {
         assertThat(Reducing.calculateTotalCaloriesUsingSum()).isEqualTo(4300);
+
+        Integer collect = menu.stream().collect(summingInt(Dish::getCalories));
+        log.debug("Sum 메소드를 이용하여 합계 구하기: {}", collect);
     }
 }
