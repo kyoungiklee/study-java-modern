@@ -4,7 +4,10 @@ import java.util.function.Function;
 
 public class ParallelStreamsHarness {
     public static void main(String[] args) {
-        System.out.println("Iterative Sum done in: " + measurePerf(ParallelStreams::iterativeSum, 10_000_000L) + "msecs");
+        System.out.println("Iterative Sum done in: "
+                + measurePerf(ParallelStreams::iterativeSum, 10_000_000L) + "msecs");
+        System.out.println("Sequantial Sum done in: "
+                + measurePerf(ParallelStreams::sequentialSum, 10_000_000L) + "msecs");
     }
 
     private static <T, R> long measurePerf(Function<T, R> f, T input) {
