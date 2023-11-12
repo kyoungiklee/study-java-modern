@@ -30,4 +30,18 @@ public class ParallelStreams {
                 .reduce(Long::sum).orElse(0L);
     }
 
+    public static long sideEffectSum(Long n) {
+        Accumulator accumulator = new Accumulator();
+        LongStream.rangeClosed(1, n).forEach(accumulator::add);
+        return accumulator.total;
+    }
+
+    public static class Accumulator {
+        private long total = 0;
+
+        public void add(long value) {
+            total += value;
+        }
+    }
+
 }
