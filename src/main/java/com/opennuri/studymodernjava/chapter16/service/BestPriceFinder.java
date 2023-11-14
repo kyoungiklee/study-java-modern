@@ -89,6 +89,30 @@ public class BestPriceFinder {
                 });
     }
 
+
+    public List<String> findPricesFutureLambda(String product) {
+        List<CompletableFuture<String>> futurePrices = findPricesStreamLambda(product).collect(Collectors.toList());
+
+        List<String> findPrices = futurePrices.stream()
+                .map(future -> future.join())
+                .collect(Collectors.toList());
+        return findPrices;
+
+    }
+
+    public Stream<CompletableFuture<String>> findPricesStreamLambda(String product) {
+        //각 상점에게 상품에 대한 가격을 문의한다.
+        return shops.stream()
+                //각 상점에 비동기로 해당 상품의 가격을 문의 한다.
+                .map(shop -> CompletableFuture.supplyAsync(() -> shop.getPrice(product), executor))
+                //각 상점의 가격으로투더 견적을 생성한다.
+                .map(future -> future.thenApply(stringQuote -> Quote.parse(stringQuote)))
+                //각 상점의 견적으로무터 비동기 방식으로 할인가를 구한다
+                .map(future -> future.thenCompose(quote ->
+                        CompletableFuture.supplyAsync(() -> Discount.applyDiscount(quote), executor)
+                ));
+    }
+
     public void printPricesStream(String product) {
 
     }
