@@ -10,9 +10,7 @@ public class Functions {
         sequantial(x);
         try {
             futureBased(x);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        } catch (ExecutionException e) {
+        } catch (InterruptedException | ExecutionException e) {
             throw new RuntimeException(e);
         }
     }
