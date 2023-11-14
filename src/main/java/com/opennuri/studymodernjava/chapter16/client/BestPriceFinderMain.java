@@ -9,7 +9,7 @@ public class BestPriceFinderMain {
     private static BestPriceFinder bestPriceFinder = new BestPriceFinder();
 
     public static void main(String[] args) {
-        execute("Composed CompletableFuture",() -> bestPriceFinder.findPricesFuture("myPhone27s"));
+        execute("Composed CompletableFuture",() -> bestPriceFinder.findPricesFutureLambda("myPhone27s"));
 
     }
 
