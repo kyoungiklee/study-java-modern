@@ -1,4 +1,4 @@
-package com.opennuri.studymodernjava.chapter5;
+package com.opennuri.studymodernjava.chapter05;
 
 import com.opennuri.studymodernjava.chapter04.Dish;
 import lombok.extern.slf4j.Slf4j;
@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 class ReducingTest {

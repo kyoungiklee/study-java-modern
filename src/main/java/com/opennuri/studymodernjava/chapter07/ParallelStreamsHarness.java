@@ -1,4 +1,4 @@
-package com.opennuri.studymodernjava.chapter7;
+package com.opennuri.studymodernjava.chapter07;
 
 import java.util.function.Function;
 

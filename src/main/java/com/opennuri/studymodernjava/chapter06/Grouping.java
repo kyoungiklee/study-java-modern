@@ -1,4 +1,4 @@
-package com.opennuri.studymodernjava.chapter6;
+package com.opennuri.studymodernjava.chapter06;
 
 
 

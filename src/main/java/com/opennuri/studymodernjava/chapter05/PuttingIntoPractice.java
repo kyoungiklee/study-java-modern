@@ -1,4 +1,4 @@
-package com.opennuri.studymodernjava.chapter5;
+package com.opennuri.studymodernjava.chapter05;
 
 import java.io.Serializable;
 import java.util.*;

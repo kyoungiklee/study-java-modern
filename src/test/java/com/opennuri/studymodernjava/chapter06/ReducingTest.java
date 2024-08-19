@@ -1,4 +1,4 @@
-package com.opennuri.studymodernjava.chapter6;
+package com.opennuri.studymodernjava.chapter06;
 
 import com.opennuri.studymodernjava.chapter04.Dish;
 import lombok.extern.slf4j.Slf4j;
