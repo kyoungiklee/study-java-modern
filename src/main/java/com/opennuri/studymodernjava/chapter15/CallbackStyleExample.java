@@ -24,6 +24,7 @@ public class CallbackStyleExample {
     private static void g(int x, IntConsumer dealWithResult) {
         dealWithResult.accept(Functions.g(x));
     }
+
     public static class Result {
         private int left;
         private int right;
