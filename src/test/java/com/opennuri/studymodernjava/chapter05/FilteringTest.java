@@ -91,6 +91,10 @@ class FilteringTest {
 
     //todo
     //메뉴 리스트에서 칼로리가 300보다 높은 메뉴중 2개를 제외하고 출력하시오
+    @Test
+    void print_excluding_2_menu_items_with_calories_higher_than_300() {
+
+    }
 
 
 
