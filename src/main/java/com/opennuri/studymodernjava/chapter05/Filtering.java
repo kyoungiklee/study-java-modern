@@ -61,6 +61,8 @@ public class Filtering {
                 .forEach(System.out::println);
         System.out.println();
 
+
+        //메뉴 리스트에서 칼로리가 300보다 높은 메뉴중 2개를 제외하고 출력하시오
         System.out.println("Skipping elements:");
         menu.stream()
                 .filter(dish -> dish.getCalories() > 300)
