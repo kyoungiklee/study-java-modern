@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.as;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
@@ -35,13 +36,14 @@ class FilteringTest {
 
     //메뉴 리스트에서 채식주의자 메뉴를 출력하시오
     @Test
-    @DisplayName("재식주의자 메뉴 출력")
+    @DisplayName("채식주의자 메뉴 출력")
     void print_vegetarian_menu() {
-        menu.stream().filter(Dish::isVegetarian)
-                .toList()
-                .forEach(dish -> log.info(dish.toString()));
-        //todo assertThat으로 변경
+        List<Dish> list = menu.stream().filter(Dish::isVegetarian)
+                .toList();
 
+        list.forEach(dish -> log.info(dish.toString()));
+        //리스트의 모든 Dish 객체의 isVegetarian=true 이다.
+        assertThat(list).allMatch(Dish::isVegetarian);
     }
 
     //주어진 숫자 리스트에서 2의 배수만 고유값으로 출력하시오
@@ -49,24 +51,27 @@ class FilteringTest {
     @DisplayName("숫자 리스트에서 2의 배수만 출력")
     void only_multiples_of_two_in_numbers() {
         List<Integer> numbers = Arrays.asList(1, 2, 1, 3, 3, 2, 4);
-        numbers.stream()
+        List<Integer> list = numbers.stream()
                 .filter(number -> number % 2 == 0)
                 .distinct()
-                .forEach(number -> log.info(number.toString()));
-        //todo assertThat으로 변경
-
+                .toList();
+        list.forEach(number -> log.info(number.toString()));
+        // 리스트의 값들은 2로 나눈 나머지가 0이다.
+        assertThat(list).allMatch(i -> i % 2 == 0);
     }
 
     //스페셜 메뉴에서 칼로리가 320이하인 것을 출력하시오
     @Test
     @DisplayName("스페셜 메뉴에서 칼로리가 320 이하인 메뉴 출력")
     void print_menus_with_calories_less_than_320_from_special_menus() {
-        specialMenu.stream()
+        List<Dish> list = specialMenu.stream()
                 .filter(dish -> dish.getCalories() < 320)
-                .toList()
-                .forEach(dish -> log.info(dish.toString()));
+                .toList();
 
-        //todo assertThat으로 변경
+        list.forEach(dish -> log.info(dish.toString()));
+
+        //list의 모든 Dish 인스턴스의 getCalories() < 320보다 작다
+        assertThat(list).allMatch(dish -> dish.getCalories() < 320);
     }
 
     //메뉴 리스트에서 칼로리가 300보다 높은 메뉴 중 3개만
@@ -94,10 +99,12 @@ class FilteringTest {
     @Test
     void print_excluding_2_menu_items_with_calories_higher_than_300() {
 
+        List<Dish> list = menu.stream().filter(dish -> dish.getCalories() > 300)
+                .skip(2)
+                .toList();
+
+        list.forEach(dish -> log.info(dish.toString()));
+
+        assertThat(list.stream().map(Dish::getName)).isNotIn("pork", "beef");
     }
-
-
-
-
-
 }
